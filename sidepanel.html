@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html data-theme="default">
+<head>
+  <style>
+    /* Theme Variables */
+    :root[data-theme="default"] {
+      --bg-color: linear-gradient(145deg, #f6f6f7, #ffffff);
+      --text-color: #1d1d1f;
+      --button-color: #0071e3;
+      --button-hover: #0077ed;
+      --border-color: rgba(0, 0, 0, 0.1);
+      --panel-bg: rgba(255, 255, 255, 0.8);
+      --scrollbar-bg: #f1f1f1;
+      --scrollbar-thumb: #c1c1c1;
+      --scrollbar-hover: #a1a1a1;
+      --button-rgb: 0, 113, 227;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    :root[data-theme="dark"] {
+      --bg-color: linear-gradient(145deg, #1d1d1f, #000000);
+      --text-color: #f5f5f7;
+      --button-color: #0071e3;
+      --button-hover: #0077ed;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --panel-bg: rgba(28, 28, 30, 0.8);
+      --scrollbar-bg: #2c2c2e;
+      --scrollbar-thumb: #454545;
+      --scrollbar-hover: #666666;
+      --button-rgb: 0, 113, 227;
+      --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+
+    :root[data-theme="midnight"] {
+      --bg-color: linear-gradient(145deg, #000B1A, #001F4D);
+      --text-color: #f5f5f7;
+      --button-color: #0284c7;
+      --button-hover: #0369a1;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --panel-bg: rgba(0, 11, 26, 0.8);
+      --scrollbar-bg: #001229;
+      --scrollbar-thumb: #0284c7;
+      --scrollbar-hover: #0369a1;
+      --button-rgb: 2, 132, 199;
+      --shadow-color: rgba(0, 0, 0, 0.4);
+    }
+
+    :root[data-theme="graphite"] {
+      --bg-color: linear-gradient(145deg, #3a3a3c, #2c2c2e);
+      --text-color: #f5f5f7;
+      --button-color: #636366;
+      --button-hover: #7c7c80;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --panel-bg: rgba(58, 58, 60, 0.8);
+      --scrollbar-bg: #2c2c2e;
+      --scrollbar-thumb: #636366;
+      --scrollbar-hover: #7c7c80;
+      --button-rgb: 99, 99, 102;
+      --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+
+    :root[data-theme="pacific"] {
+      --bg-color: linear-gradient(145deg, #004D61, #0A84FF);
+      --text-color: #ffffff;
+      --button-color: #30D5C8;
+      --button-hover: #40E0D0;
+      --border-color: rgba(255, 255, 255, 0.2);
+      --panel-bg: rgba(0, 77, 97, 0.8);
+      --scrollbar-bg: #004D61;
+      --scrollbar-thumb: #30D5C8;
+      --scrollbar-hover: #40E0D0;
+      --button-rgb: 48, 213, 200;
+      --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+
+    :root[data-theme="rose"] {
+      --bg-color: linear-gradient(145deg, #FF6B6B, #BF4F74);
+      --text-color: #ffffff;
+      --button-color: #FF8787;
+      --button-hover: #FFA5A5;
+      --border-color: rgba(255, 255, 255, 0.2);
+      --panel-bg: rgba(255, 107, 107, 0.8);
+      --scrollbar-bg: #FF6B6B;
+      --scrollbar-thumb: #FF8787;
+      --scrollbar-hover: #FFA5A5;
+      --button-rgb: 255, 135, 135;
+      --shadow-color: rgba(0, 0, 0, 0.2);
+    }
+
+    :root[data-theme="sierra"] {
+      --bg-color: linear-gradient(145deg, #2F4F4F, #3CB371);
+      --text-color: #ffffff;
+      --button-color: #98FB98;
+      --button-hover: #90EE90;
+      --border-color: rgba(255, 255, 255, 0.2);
+      --panel-bg: rgba(47, 79, 79, 0.8);
+      --scrollbar-bg: #2F4F4F;
+      --scrollbar-thumb: #98FB98;
+      --scrollbar-hover: #90EE90;
+      --button-rgb: 152, 251, 152;
+      --shadow-color: rgba(0, 0, 0, 0.3);
+    }
+
+    :root[data-theme="lavender"] {
+      --bg-color: linear-gradient(145deg, #9678B6, #7D6E83);
+      --text-color: #ffffff;
+      --button-color: #D7BBF5;
+      --button-hover: #EFD9F9;
+      --border-color: rgba(255, 255, 255, 0.2);
+      --panel-bg: rgba(150, 120, 182, 0.8);
+      --scrollbar-bg: #9678B6;
+      --scrollbar-thumb: #D7BBF5;
+      --scrollbar-hover: #EFD9F9;
+      --button-rgb: 215, 187, 245;
+      --shadow-color: rgba(0, 0, 0, 0.25);
+    }
+
+    :root[data-theme="solar"] {
+      --bg-color: linear-gradient(145deg, #FF9966, #FF5E62);
+      --text-color: #ffffff;
+      --button-color: #FFD700;
+      --button-hover: #FFA500;
+      --border-color: rgba(255, 255, 255, 0.2);
+      --panel-bg: rgba(255, 153, 102, 0.8);
+      --scrollbar-bg: #FF9966;
+      --scrollbar-thumb: #FFD700;
+      --scrollbar-hover: #FFA500;
+      --button-rgb: 255, 215, 0;
+      --shadow-color: rgba(0, 0, 0, 0.2);
+    }
+
+    :root[data-theme="space"] {
+      --bg-color: linear-gradient(145deg, #0F172A, #1E293B);
+      --text-color: #ffffff;
+      --button-color: #38BDF8;
+      --button-hover: #7DD3FC;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --panel-bg: rgba(15, 23, 42, 0.8);
+      --scrollbar-bg: #0F172A;
+      --scrollbar-thumb: #38BDF8;
+      --scrollbar-hover: #7DD3FC;
+      --button-rgb: 56, 189, 248;
+      --shadow-color: rgba(0, 0, 0, 0.4);
+    }
+
+    :root[data-theme="cyberpunk"] {
+      --bg-color: linear-gradient(145deg, #1a0b2e, #2b0b3a);
+      --text-color: #00fff2;
+      --button-color: #ff00ff;
+      --button-hover: #b100cd;
+      --border-color: rgba(0, 255, 242, 0.2);
+      --panel-bg: rgba(26, 11, 46, 0.9);
+      --scrollbar-bg: #1a0b2e;
+      --scrollbar-thumb: #ff00ff;
+      --scrollbar-hover: #b100cd;
+      --button-rgb: 255, 0, 255;
+      --shadow-color: rgba(0, 255, 242, 0.3);
+    }
+
+    /* Apply theme colors */
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    #toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: grid;
+      grid-template-columns: 2fr auto auto auto;
+      gap: 8px;
+      padding: 8px;
+      background: var(--panel-bg);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    #url {
+      width: 100%;
+      height: 36px;
+      padding: 0 16px;
+      border: none;
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-color);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .btn, #add-fav {
+      height: 36px;
+      padding: 0 16px;
+      border: none;
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    #go, #favorite, #refresh, #theme {
+      background: var(--button-color);
+      color: var(--text-color);
+    }
+
+    #go:hover, #favorite:hover, #refresh:hover, #theme:hover {
+      background: var(--button-hover);
+    }
+
+    #favorites-panel {
+      background: var(--panel-bg);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .favorite-item {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .favorite-item:hover {
+      background: var(--button-hover);
+    }
+
+    .favorite-link {
+      color: var(--text-color);
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--scrollbar-bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--scrollbar-hover);
+    }
+
+    /* Theme dropdown styling */
+    #theme-select {
+      position: absolute;
+      display: none;
+      top: 90px;
+      right: 8px;
+      background: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      z-index: 1001;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .theme-option {
+      padding: 8px 16px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+
+    .theme-option:hover {
+      background: var(--button-hover);
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    #theme-select {
+      position: absolute;
+      display: none;
+      top: 100px;
+      right: 16px;
+      background: var(--panel-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      min-width: 200px;
+    }
+
+    .theme-option {
+      padding: 12px 20px;
+      cursor: pointer;
+      color: var(--text-color);
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+
+    .theme-option:hover {
+      background: var(--button-hover);
+      padding-left: 24px;
+    }
+
+    #favorites-panel {
+      display: none;
+      position: absolute;
+      top: 120px;
+      left: 16px;
+      right: 16px;
+      background: var(--panel-bg);
+      border-radius: 16px;
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 1000;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .favorite-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .favorite-item:last-child {
+      border-bottom: none;
+    }
+
+    .favorite-link {
+      flex: 1;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      margin-right: 12px;
+    }
+
+    .remove-favorite {
+      color: var(--text-color);
+      cursor: pointer;
+      padding: 8px;
+      border: none;
+      background: var(--button-color);
+      font-size: 12px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .remove-favorite:hover {
+      background: var(--button-hover);
+    }
+
+    #browser-container {
+      position: relative;
+      width: 100%;
+      height: calc(100% - 120px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      background: var(--bg-color);
+      padding: 16px;
+      padding-top: 32px;
+    }
+
+    #browser {
+      width: 390px; /* iPhone 12 Pro width */
+      min-height: 100%;
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      transform-origin: top center;
+      margin-top: 16px;
+    }
+
+    /* Modern scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--scrollbar-bg);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--scrollbar-hover);
+    }
+
+    .btn.active {
+      background: #ff3b30; /* Red color for unfavorite action */
+    }
+
+    .favorites-header {
+      padding: 12px 20px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--button-color);
+      color: var(--text-color);
+    }
+
+    .remove-favorite {
+      color: var(--text-color);
+      cursor: pointer;
+      padding: 8px 12px;
+      border: none;
+      background: var(--button-color);
+      font-size: 12px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .remove-favorite:hover {
+      background: #ff3b30;
+    }
+
+    /* Update favorite button styles */
+    #favorite {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #favorite::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    #favorite:hover::after {
+      opacity: 1;
+    }
+
+    .url-container {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    #add-fav {
+      padding: 0 16px;
+      border: none;
+      border-radius: 12px;
+      background: var(--button-color);
+      color: var(--text-color);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    #add-fav:hover {
+      background: var(--button-hover);
+    }
+
+    #add-fav.active {
+      background: #ff3b30;
+    }
+
+    #controls {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    #favorites-dropdown {
+      display: none;
+      position: absolute;
+      top: 120px;
+      left: 16px;
+      right: 16px;
+      background: var(--panel-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      z-index: 1000;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .dropdown-header {
+      padding: 16px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--button-color);
+      color: var(--text-color);
+    }
+
+    .favorite-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .favorite-link {
+      flex: 1;
+      text-decoration: none;
+      color: var(--text-color);
+      cursor: pointer;
+    }
+
+    .remove-fav {
+      padding: 4px 8px;
+      border: none;
+      border-radius: 8px;
+      background: var(--button-color);
+      color: var(--text-color);
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    .remove-fav:hover {
+      background: #ff3b30;
+    }
+
+    .no-favorites {
+      padding: 16px;
+      text-align: center;
+      color: var(--text-color);
+    }
+
+    #favorites {
+      background: var(--button-color);
+      color: white;
+    }
+
+    #favorites:hover {
+      background: var(--button-hover);
+    }
+
+    /* Add these special effects for cyberpunk theme */
+    :root[data-theme="cyberpunk"] .btn {
+      text-shadow: 0 0 10px var(--text-color);
+      box-shadow: 0 0 15px rgba(0, 255, 242, 0.3);
+      border: 1px solid rgba(0, 255, 242, 0.2);
+    }
+
+    :root[data-theme="cyberpunk"] #toolbar {
+      background: linear-gradient(90deg, rgba(26, 11, 46, 0.9), rgba(43, 11, 58, 0.9));
+      border-bottom: 1px solid rgba(0, 255, 242, 0.2);
+    }
+
+    :root[data-theme="cyberpunk"] #url {
+      background: rgba(26, 11, 46, 0.5);
+      border: 1px solid rgba(0, 255, 242, 0.2);
+      box-shadow: 0 0 10px rgba(0, 255, 242, 0.1);
+    }
+
+    :root[data-theme="cyberpunk"] #favorites-dropdown {
+      background: linear-gradient(145deg, rgba(26, 11, 46, 0.95), rgba(43, 11, 58, 0.95));
+      border: 1px solid rgba(0, 255, 242, 0.2);
+      box-shadow: 0 0 20px rgba(0, 255, 242, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div id="toolbar">
+    <input type="text" id="url" placeholder="Enter URL..." value="https://google.com/">
+    <button id="add-fav" class="btn">Add</button>
+    <button id="favorites" class="btn">Select AI</button>
+    <button id="theme" class="btn">Theme</button>
+  </div>
+  <div id="theme-select">
+    <div class="theme-option" data-theme="default">Default</div>
+    <div class="theme-option" data-theme="dark">Dark</div>
+    <div class="theme-option" data-theme="midnight">Midnight</div>
+    <div class="theme-option" data-theme="graphite">Graphite</div>
+    <div class="theme-option" data-theme="pacific">Pacific</div>
+    <div class="theme-option" data-theme="rose">Rose</div>
+    <div class="theme-option" data-theme="sierra">Sierra</div>
+    <div class="theme-option" data-theme="lavender">Lavender</div>
+    <div class="theme-option" data-theme="solar">Solar</div>
+    <div class="theme-option" data-theme="space">Space</div>
+    <div class="theme-option" data-theme="cyberpunk">Cyberpunk</div>
+  </div>
+  <div id="favorites-dropdown">
+    <div class="dropdown-header">Select AI Below</div>
+    <div id="favorites-list"></div>
+  </div>
+  <div id="browser-container">
+    <iframe 
+      id="browser"
+      src="https://google.com/"
+      sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-presentation allow-modals allow-orientation-lock allow-pointer-lock allow-popups-to-escape-sandbox allow-top-navigation allow-top-navigation-by-user-activation allow-downloads"
+      referrerpolicy="no-referrer"
+      loading="eager"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+    </iframe>
+  </div>
+  <script src="sidepanel.js"></script>
+</body>
+</html> 
